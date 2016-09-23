@@ -1,0 +1,14 @@
+{
+	"descript":"项目构建依赖文件",
+	"author":"brucecham",
+	"project":"测试项目",
+	"version":"1.0.0",
+	"build":[
+		{
+			"dependency":[
+				"/app/global/app-*.css",
+				"/app/app-*.js"
+			]
+		}
+	]
+}

@@ -1,0 +1,65 @@
+@bootstrap: "../bower_components/bootstrap/less/";
+@import "variables.less";
+@import "mixins.less";
+// reference bootstrap minxin lib 
+.otp {
+    .show {
+        display: table-cell !important;
+    }
+    .tips {
+        display: none;
+    }
+    .input-group {
+        margin: 0;
+    }
+    .input-group-addon {
+        min-width: 85px;
+    }
+    .otp-mobile-wrapper {
+        ~ .input-group {
+            border-top-width: 0;
+        }
+        &.hide {
+            + .input-group {
+                border-top-width: 1px;
+            }
+            + .otp-captcha-wrapper {
+                + .input-group {
+                    border-top-width: 1px;
+                }
+            }
+        }
+        + .otp-captcha-wrapper {
+            &.show {
+                + .input-group {
+                    border-top-width: 0;
+                }
+            }
+        }
+    }
+    .otp-captcha-wrapper {
+        display: none;
+        &.show {
+            display: table !important;
+        }
+        .captcha-image {
+            width: 70px;
+            height: 30px;
+            color: @brand-primary;
+        }
+    }
+    .otp-input-wrapper {
+        .otp-btn-send {
+            display: none;
+            cursor: pointer;
+            color: @brand-primary;
+            padding: @padding-base-vertical @padding-base-horizontal;
+            &.disabled {
+                color: @gray-lighter;
+            }
+        }
+        .otp-btn-ticker {
+            .otp-btn-send;
+        }
+    }
+}

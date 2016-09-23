@@ -1,0 +1,9 @@
+<div class="homepage" ng-controller="next">
+	<a href="#homepage"><h1>hello,it is next page</h1></a>
+	<p ng-click="showName()">点击土豆{{name + count}}，以post请求</p>
+	<div ng-show="httpSuc">
+		<p>用户名：{{userInfo.name}}</p>
+		<p>年龄：{{userInfo.age}}</p>
+		<p>个人简介：{{userInfo.desc}}</p>
+	</div>
+</div>
