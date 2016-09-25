@@ -1,8 +1,8 @@
-app.controller('regController', ['$scope','$http', function($scope,$http){
+app.controller('regController', ['$scope','$http','$state','$rootScope', function($scope,$http,$state,$rootScope){
     $scope.reg = function(flag){
         if( flag ){
             $http({
-                url: '/reg',
+                url: '/User/reg',
                 method: 'post',
                 data: {
                 	name: $scope.name,
@@ -11,7 +11,13 @@ app.controller('regController', ['$scope','$http', function($scope,$http){
                     passwordRepeat: $scope.passwordRepeat
                 }
             }).success(function(res){
-                console.log(res)
+                if( res.resultCode == '000000' ){
+                    alert('注册成功');
+                    $rootScope.username = res.result.username;
+                    $state.go('home');
+                }else{
+                    alert(res.resultMsg)
+                }
             })
         }
     }

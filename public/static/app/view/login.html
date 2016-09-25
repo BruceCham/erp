@@ -1,12 +1,18 @@
-<form novalidate name="myForm" class="loginBox">
-	<input type="text" name='phone' ng-model="phone" ng-pattern='/^(1[^012][0-9]{9})$/' required placeholder="请输入手机号码">
-	<div ng-show="myForm.phone.$dirty&&myForm.phone.$invalid">
-		<span style="color:red" ng-show="myForm.phone.$error.required">手机号必填</span>
-		<span style="color:red" ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
-	</div>
-	<input type="password" name="password" ng-model="password" required placeholder="请输入密码">
-	<div ng-show="myForm.password.$dirty&&myForm.password.$invalid">
-		<span style="color:red" ng-show="myForm.password.$error.required">请输入密码</span>
-	</div>
-	<div class="loginBtn" ng-click="login(myForm.phone.$dirty&&myForm.password.$dirty&&! myForm.phone.$invalid&&!myForm.password.$invalid)" ng-class="{active: myForm.phone.$dirty&&myForm.password.$dirty&&! myForm.phone.$invalid&&!myForm.password.$invalid}">登&nbsp;&nbsp;录</div>
-</form>
+<header>
+    <span>银谷学生管理系统</span>
+</header>
+<div class="body">
+    <form novalidate name="myForm" class="loginBox">
+		<input type="text" name='phone' ng-model="phone" ng-pattern='/^(1[^012][0-9]{9})$/' required placeholder="请输入手机号码">
+		<div class="error-item" ng-show="myForm.phone.$dirty&&myForm.phone.$invalid">
+			<span ng-show="myForm.phone.$error.required">手机号必填</span>
+			<span ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
+		</div>
+		<input type="password" name="password" ng-model="password" required placeholder="请输入密码">
+		<div class="error-item" ng-show="myForm.password.$dirty&&myForm.password.$invalid">
+			<span ng-show="myForm.password.$error.required">请输入密码</span>
+		</div>
+		<div class="loginBtn" ng-click="login(myForm.$valid)" ng-class="{active: myForm.$valid}">登&nbsp;&nbsp;录</div>
+	</form>
+</div>
+<footer>©2016 银谷科技版权所有</footer>

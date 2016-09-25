@@ -1,21 +1,29 @@
-<form novalidate name="myForm" class="loginBox">
-	<input type="text" name="name" ng-model="name" placeholder="用户名">
-	<input type="text" name='phone' ng-model="phone" ng-pattern='/^(1[^012][0-9]{9})$/' required placeholder="请输入手机号码">
-	<div ng-show="myForm.phone.$dirty&&myForm.phone.$invalid">
-		<span style="color:red" ng-show="myForm.phone.$error.required">手机号必填</span>
-		<span style="color:red" ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
-	</div>
+<header>
+    <span>银谷学生管理系统</span>
+</header>
+<div class="body">
+    <form novalidate name="myForm" class="loginBox">
+		<input type="text" name="name" ng-model="name" placeholder="用户名">
+		<input type="text" name='phone' ng-model="phone" ng-pattern='/^(1[^012][0-9]{9})$/' required placeholder="请输入手机号码">
+		<div class="error-item" ng-show="myForm.phone.$dirty&&myForm.phone.$invalid">
+			<span ng-show="myForm.phone.$error.required">手机号必填</span>
+			<span ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
+		</div>
 
-	<input type="password" name="password" ng-model="password" required placeholder="请输入密码">
-	<div ng-show="myForm.password.$dirty&&myForm.password.$invalid">
-		<span style="color:red" ng-show="myForm.password.$error.required">请输入密码</span>
-	</div>
+		<input type="password" name="password" ng-model="password" required placeholder="请输入密码">
+		<div class="error-item" ng-show="myForm.password.$dirty&&myForm.password.$invalid">
+			<span ng-show="myForm.password.$error.required">请输入密码</span>
+		</div>
 
-	<input type="password" name="passwordRepeat" ng-model="passwordRepeat" required placeholder="请再次输入密码">
-	<div>
-		<span style="color:red" ng-show="myForm.passwordRepeat.$dirty&&myForm.passwordRepeat.$error.required">请再次输入密码</span>
-		<span style="color: red" ng-show="myForm.passwordRepeat.$dirty&&!myForm.passwordRepeat.$error.required&&password!==passwordRepeat">两次输入的密码不一致</span>
-	</div>
+		<input type="password" name="passwordRepeat" ng-model="passwordRepeat" required placeholder="请再次输入密码">
+		<div class="error-item" ng-show="myForm.passwordRepeat.$dirty&&myForm.passwordRepeat.$error.required">
+			<span>请再次输入密码</span>
+		</div>
+		<div class="error-item" ng-show="myForm.passwordRepeat.$dirty&&!myForm.passwordRepeat.$error.required&&password!==passwordRepeat">
+			<span>两次输入的密码不一致</span>
+		</div>
 
-	<div class="loginBtn" ng-click="reg(myForm.phone.$dirty&&myForm.password.$dirty&&myForm.passwordRepeat.$dirty&&! myForm.phone.$invalid&&!myForm.password.$invalid&&!myForm.passwordRepeat.$invalid&&password===passwordRepeat)" ng-class="{active:myForm.phone.$dirty&&myForm.password.$dirty&&myForm.passwordRepeat.$dirty&&! myForm.phone.$invalid&&!myForm.password.$invalid&&!myForm.passwordRepeat.$invalid&&password===passwordRepeat}">注&nbsp;&nbsp;册</div>
-</form>
+		<div class="loginBtn" ng-click="reg(myForm.$valid&&password===passwordRepeat)" ng-class="{active:myForm.$valid&&password===passwordRepeat}">注&nbsp;&nbsp;册</div>
+	</form>
+</div>
+<footer>©2016 银谷科技版权所有</footer>
