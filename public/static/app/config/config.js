@@ -1,4 +1,4 @@
-var appUnlogin = angular.module('unlogin_h5', ['ui.router','ngDialog']);
+var appUnlogin = angular.module('unlogin_h5', ['ui.router']);
 appUnlogin.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
   $stateProvider
