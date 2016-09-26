@@ -13,11 +13,11 @@ html(ng-app='login_h5')
     script(src='/static/app/bower_components/angular/angular.js')
     script(src='/static/app/bower_components/angular-ui-router/release/angular-ui-router.js')
   body
-    header 银谷学生管理系统
+    header
       span 银谷学生管理系统
       div.userinfo
         span= username
-        span.go-back(ng-click='logout()') 退出
+        span.goback(ng-click='logout()') 退出
     div.body
       div(ui-view)
     footer ©2016 银谷科技版权所有

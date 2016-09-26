@@ -1,4 +1,4 @@
-appUnlogin.controller('loginController', ['$scope','$http','$state',function($scope,$http,$state){
+appUnlogin.controller('loginController', ['$scope','$http',function($scope,$http){
     $scope.login = function(flag){
         if( flag ){
             $http({
@@ -11,7 +11,7 @@ appUnlogin.controller('loginController', ['$scope','$http','$state',function($sc
             }).success(function(res){
                 if(res.resultCode == '000000'){
                     alert('登录成功');
-                    $state.go('home');
+                    location.reload();
                 }else{
                     alert(res.resultMsg);
                 }

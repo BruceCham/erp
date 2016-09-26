@@ -1,4 +1,4 @@
-appUnlogin.controller('regController', ['$scope','$http','$state','$rootScope', function($scope,$http,$state,$rootScope){
+appUnlogin.controller('regController', ['$scope','$http', function($scope,$http){
     $scope.reg = function(flag){
         if( flag ){
             $http({
@@ -13,8 +13,7 @@ appUnlogin.controller('regController', ['$scope','$http','$state','$rootScope', 
             }).success(function(res){
                 if( res.resultCode == '000000' ){
                     alert('注册成功');
-                    $rootScope.username = res.result.username;
-                    $state.go('home');
+                    location.reload();
                 }else{
                     alert(res.resultMsg)
                 }
