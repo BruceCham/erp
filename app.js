@@ -11,8 +11,8 @@ var multer  = require('multer');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var app = express();
-
 // view engine setup
+app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/static', 'favicon.ico')));
@@ -42,11 +42,12 @@ app.use(multer({
 
 //解决跨域
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://10.48.0.41:3000");
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("X-Powered-By",' 3.2.1')
-    res.header("Content-Type", "application/json;charset=utf-8");
+    //此行会把jade无法转为html
+    // res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
 

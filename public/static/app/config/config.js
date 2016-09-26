@@ -1,5 +1,5 @@
-var app = angular.module('h5_angularjs', ['ui.router','ngDialog']);
-app.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider) {
+var appUnlogin = angular.module('unlogin_h5', ['ui.router','ngDialog']);
+appUnlogin.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
   $stateProvider
     .state('login',{
@@ -12,17 +12,15 @@ app.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRo
         templateUrl: '/static/app/view/reg.html',
         controller: 'regController'
     })
+  }
+]);
+var appLogin = angular.module('login_h5',['ui.router']);
+appLogin.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider){
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider
     .state('home',{
         url: '/home',
         templateUrl: '/static/app/view/home.html',
         controller: 'homeController'
     })
-    .state('error{code}',{
-        url: '/error/:code',
-        templateUrl: '/static/app/view/error.html',
-        controller: ["$scope","$routeParams",function($scope,$routeParams){
-            $scope.errorCode = $routeParams.code;
-        }]
-    });
-  }
-]);
+}]);

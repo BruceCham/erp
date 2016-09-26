@@ -1,4 +1,4 @@
-app.controller('loginController', ['$scope','$http','$state','$rootScope',function($scope,$http,$state,$rootScope){
+appUnlogin.controller('loginController', ['$scope','$http','$state',function($scope,$http,$state){
     $scope.login = function(flag){
         if( flag ){
             $http({
@@ -11,12 +11,9 @@ app.controller('loginController', ['$scope','$http','$state','$rootScope',functi
             }).success(function(res){
                 if(res.resultCode == '000000'){
                     alert('登录成功');
-                    $rootScope.username = res.result.username;
                     $state.go('home');
                 }else{
                     alert(res.resultMsg);
-                    $rootScope.username = res.result.username;
-                    $state.go('home');
                 }
             })
         }

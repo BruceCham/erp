@@ -1,0 +1,21 @@
+doctype html
+html(ng-app='unlogin_h5')
+  head
+    title 请登录系统
+    meta(charset='utf-8')
+    meta(name="viewport",content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no")
+    meta(name="apple-touch-fullscreen",content="YES")
+    meta(name="format-detection",content="telephone=no")
+    meta(name="apple-mobile-web-app-capable",content="yes")
+    meta(name="apple-touch-fullscreen",content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style",content="black")
+    link(rel="stylesheet",href='/static/app/app.min.css')
+    script(src='/static/app/bower_components/angular/angular.js')
+    script(src='/static/app/bower_components/angular-ui-router/release/angular-ui-router.js')
+    script(src='/static/app/bower_components/ng-dialog/js/ngDialog.js')
+  body
+    header 银谷学生管理系统
+    div.body
+      div(ui-view)
+    footer ©2016 银谷科技版权所有
+    script(src='/static/app/app.min.js')

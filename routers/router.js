@@ -1,5 +1,5 @@
 var routerModels = {
-	// router : require('../controller/router'),
+	router : require('../controller/router'),
 	user: require('../controller/user'),
 	res: require('../controller/res')
 };

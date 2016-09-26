@@ -1,6 +1,3 @@
-<header>
-    <span>银谷学生管理系统</span>
-</header>
 <div class="body">
     <form novalidate name="myForm" class="loginBox">
 		<input type="text" name='phone' ng-model="phone" ng-pattern='/^(1[^012][0-9]{9})$/' required placeholder="请输入手机号码">
@@ -15,4 +12,3 @@
 		<div class="loginBtn" ng-click="login(myForm.$valid)" ng-class="{active: myForm.$valid}">登&nbsp;&nbsp;录</div>
 	</form>
 </div>
-<footer>©2016 银谷科技版权所有</footer>

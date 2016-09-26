@@ -1,4 +1,4 @@
-app.controller('homeController',['$scope','$http','$state',function($scope,$http,$state){
+appLogin.controller('homeController',['$scope','$http','$state',function($scope,$http,$state){
 	$http({
 		url: '/Res/getAllRes',
 		method: 'post'

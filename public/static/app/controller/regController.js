@@ -1,4 +1,4 @@
-app.controller('regController', ['$scope','$http','$state','$rootScope', function($scope,$http,$state,$rootScope){
+appUnlogin.controller('regController', ['$scope','$http','$state','$rootScope', function($scope,$http,$state,$rootScope){
     $scope.reg = function(flag){
         if( flag ){
             $http({
