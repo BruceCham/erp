@@ -23,4 +23,9 @@ appLogin.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$
         templateUrl: '/static/app/view/home.html',
         controller: 'homeController'
     })
+    .state('home.class',{
+        url: '/class/:ctns',
+        templateUrl: '/static/app/view/home.class.html',
+        controller: 'homeClassController'
+    })
 }]);

@@ -1,16 +1,18 @@
-<div class="yg-g-home">
-	<ul class="home-g-thead fn-clear">
-		<li>科目</li>
-		<li>班级</li>
-		<li>人数</li>
-		<li>开班时间</li>
-		<li>毕业时间</li>
-	</ul>
-	<ul class="home-g-tbody fn-clear">
-		<li><a ui-sref="class">{{['','html5','android','ios','ui','java'][classData.ct]}}</a></li>
-		<li>{{classData.cn}}</li>
-		<li>{{classData.count}}</li>
-		<li>{{classData.cst|date:'yyyy-MM-dd'}}</li>
-		<li>{{classData.cet|date:'yyyy-MM-dd'}}</li>
-	</ul>
+<div ui-view>
+	<div class="yg-g-home">
+		<ul class="home-g-thead fn-clear">
+			<li>科目</li>
+			<li>班级</li>
+			<li>人数</li>
+			<li>开班时间</li>
+			<li>毕业时间</li>
+		</ul>
+		<ul class="home-g-tbody fn-clear" ng-repeat="obj in classData">
+			<li><a ui-sref="home.class({ctns:obj.ctns})">{{['','html5','android','ios','ui','java'][obj.ctns.split('-')[0]]}}</a></li>
+			<li>{{obj.ctns.split('-')[1]}}</li>
+			<li>{{obj.count}}</li>
+			<li>{{obj.cst|date:'yyyy-MM-dd'}}</li>
+			<li>{{obj.cet|date:'yyyy-MM-dd'}}</li>
+		</ul>
+	</div>
 </div>

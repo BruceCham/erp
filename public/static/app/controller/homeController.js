@@ -1,16 +1,7 @@
 appLogin.controller('homeController',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
 	$scope.classData = [];
 	$http({
-		url: '/Res/getAllResByClass',
-		// data:{
-		// 	ct: '1',
-		// 	cn: '1601'
-		// },
-		params:{
-			ct: '1',
-			cn: '1601'
-		},
-		method: 'get'
+		url: '/Res/getAllRes'
 	}).success(function(res){
 		$scope.classData = res.result;
 	});

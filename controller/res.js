@@ -10,10 +10,31 @@ module.exports = function(app) {
                     'result': {}
                 })
             }
+            var ctns = [];
+            var result = [];
+            for(var i=0;i<resList.length;i++){
+                var obj = resList[i];
+                var str = obj.ctns;
+                if( ctns.join(',').indexOf(str) > -1){
+                    for(var j=0;j<result.length;j++){
+                        if( result[j].ctns == str ){
+                            result[j].count++;
+                        }
+                    }
+                }else{
+                    ctns.push(str);
+                    result.push({
+                        ctns: str,
+                        count: 1,
+                        cst: obj.cst,
+                        cet: obj.cet
+                    });
+                }
+            }
             return res.send({
                 'resultCode': '000000',
                 'resultMsg': 'success',
-                'result': resList
+                'result': result
             })
         });
     });
@@ -38,9 +59,8 @@ module.exports = function(app) {
 
     app.get('/Res/getAllResByClass', checkLogin);
     app.get('/Res/getAllResByClass', function(req, res){
-        var ct = req.query.ct;
-        var cn = req.query.cn;
-        Res.getAllByC(ct , cn ,function(err, resList) {
+        var ctns = req.query.ctns;
+        Res.getAllByC(ctns ,function(err, resList) {
             if (err) {
                 return res.send({
                     'resultCode': '000044',
@@ -48,20 +68,12 @@ module.exports = function(app) {
                     'result': {}
                 })
             }
-            var result = null;
-            if( resList.length > 0 ){
-                result = {
-                    ct: ct,
-                    cn: cn,
-                    cst: resList[0].cst,
-                    cet: resList[0].cet,
-                    count: resList.length
-                }
-            }
+            console.log(resList);
+            console.log('errCCCC++++++++++++');
             return res.send({
                 'resultCode': '000000',
                 'resultMsg': 'success',
-                'result': result
+                'result': resList
             })
         });
     });

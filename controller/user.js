@@ -61,7 +61,7 @@ module.exports = function(app) {
                     'resultCode': '000000',
                     'resultMsg': 'success',
                     'result': {
-                        username: user.name
+                        username: newUser.name
                     }
                 })
             });

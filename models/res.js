@@ -126,7 +126,7 @@ Res.getAll = function(callback) {
     });
   });
 };
-Res.getAllByC = function(ct,cn,callback){
+Res.getAllByC = function(ctns,callback){
   mongodb.open(function(err, db) {
     if (err) {
       return callback(err); //错误，返回 err 信息
@@ -138,11 +138,13 @@ Res.getAllByC = function(ct,cn,callback){
         return callback(err); //错误，返回 err 信息
       }
       //查找用户手机号（phone键）值为 phone 一个文档
-      collections.find({ct:ct,cn:cn}).toArray(function(err, resList) {
+      collections.find({ctns:ctns}).toArray(function(err, resList) {
         mongodb.close();
         if (err) {
           return callback(err); //失败！返回 err 信息
         }
+        console.log(resList);
+        console.log('errModel++++++++++++');
         callback(null, resList); //成功
       });
     });
