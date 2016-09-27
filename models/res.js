@@ -126,6 +126,28 @@ Res.getAll = function(callback) {
     });
   });
 };
+Res.getAllByC = function(ct,cn,callback){
+  mongodb.open(function(err, db) {
+    if (err) {
+      return callback(err); //错误，返回 err 信息
+    }
+    //读取 users 集合
+    db.collection('res', function(err, collections) {
+      if (err) {
+        mongodb.close();
+        return callback(err); //错误，返回 err 信息
+      }
+      //查找用户手机号（phone键）值为 phone 一个文档
+      collections.find({ct:ct,cn:cn}).toArray(function(err, resList) {
+        mongodb.close();
+        if (err) {
+          return callback(err); //失败！返回 err 信息
+        }
+        callback(null, resList); //成功
+      });
+    });
+  });
+}
 //删除当前账号下的某一资源信息
 Res.del = function(ct, cn, cs, callback) {
   var ctns = ct + '-' + cn + '-' + cs;

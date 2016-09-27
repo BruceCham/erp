@@ -1,1 +1,16 @@
-<div>hello 个人中心</div>
+<div class="yg-g-home">
+	<ul class="home-g-thead fn-clear">
+		<li>科目</li>
+		<li>班级</li>
+		<li>人数</li>
+		<li>开班时间</li>
+		<li>毕业时间</li>
+	</ul>
+	<ul class="home-g-tbody fn-clear">
+		<li><a ui-sref="class">{{['','html5','android','ios','ui','java'][classData.ct]}}</a></li>
+		<li>{{classData.cn}}</li>
+		<li>{{classData.count}}</li>
+		<li>{{classData.cst|date:'yyyy-MM-dd'}}</li>
+		<li>{{classData.cet|date:'yyyy-MM-dd'}}</li>
+	</ul>
+</div>

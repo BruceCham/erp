@@ -6,12 +6,10 @@
 			<span ng-show="myForm.phone.$error.required">手机号必填</span>
 			<span ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
 		</div>
-
 		<input type="password" name="password" ng-model="password" required placeholder="请输入密码">
 		<div class="error-item" ng-show="myForm.password.$dirty&&myForm.password.$invalid">
 			<span ng-show="myForm.password.$error.required">请输入密码</span>
 		</div>
-
 		<input type="password" name="passwordRepeat" ng-model="passwordRepeat" required placeholder="请再次输入密码">
 		<div class="error-item" ng-show="myForm.passwordRepeat.$dirty&&myForm.passwordRepeat.$error.required">
 			<span>请再次输入密码</span>
@@ -19,7 +17,6 @@
 		<div class="error-item" ng-show="myForm.passwordRepeat.$dirty&&!myForm.passwordRepeat.$error.required&&password!==passwordRepeat">
 			<span>两次输入的密码不一致</span>
 		</div>
-
 		<div class="loginBtn" ng-click="reg(myForm.$valid&&password===passwordRepeat)" ng-class="{active:myForm.$valid&&password===passwordRepeat}">注&nbsp;&nbsp;册</div>
 	</form>
 </div>
