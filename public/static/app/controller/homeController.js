@@ -1,10 +1,5 @@
 appLogin.controller('homeController',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
 	$scope.classData = [];
-	$http({
-		url: '/Res/getAllRes'
-	}).success(function(res){
-		$scope.classData = res.result;
-	});
 	$rootScope.logout = function(){
 		$http({
 			url: '/User/logout',

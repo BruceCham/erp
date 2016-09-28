@@ -56,7 +56,6 @@ module.exports = function(app) {
                         'result': {}
                     })
                 }
-                req.session.user = user;
                 return res.send({
                     'resultCode': '000000',
                     'resultMsg': 'success',

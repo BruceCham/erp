@@ -1,0 +1,25 @@
+<div class="yg-p-home-class">
+	<h1 class="class-thead">讲台</h1>
+	<ul class="class-tbody fn-clear">
+		<li ng-click="showResDetail(obj)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe}">{{obj.cs}}</li>
+	</ul>
+	<div class="student-group">
+		<form novalidate name="stuInfo" ng-model="stuInfo">
+			<div class="student-item">
+				<legend>学员</legend>
+				<input ng-value="ResDetail.sn" ng-model="sn" name="sn" ng-maxlength="4" ng-minlength="2" type="text" placeholder="请填写学员名称">
+			</div>
+			<div class="student-item">
+				<legend>学员手机号</legend>
+				<input ng-value="ResDetail.sp" ng-model="sp" name="sp" ng-pattern='/^(1[^012][0-9]{9})$/' placeholder="请输入学员手机号码" type="text" >
+			</div>
+			<div class="student-item">
+				<legend>咨询师手机号</legend>
+				<input ng-value="ResDetail.op" ng-model="op" name="op" ng-pattern='/^(1[^012][0-9]{9})$/' placeholder="请输入您的手机号码" type="text" required>
+			</div>
+			<div class="student-item">
+				<div class="btn">提交</div>
+			</div>
+		</form>
+	</div>
+</div>

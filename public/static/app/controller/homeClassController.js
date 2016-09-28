@@ -1,5 +1,9 @@
-appLogin.controller('classController',['$scope','$http','$stateParams',function($scope,$http,$stateParams){
+appLogin.controller('homeClassController',['$scope','$http','$stateParams',function($scope,$http,$stateParams){
 	$scope.dataArr = [];
+	$scope.ResDetail = $scope.dataArr[0];;
+	$scope.showResDetail = function(o){
+		$scope.ResDetail = o;
+	}
 	$http({
 		url: '/Res/getAllResByClass',
 		params:{
