@@ -60,6 +60,7 @@ module.exports = function(app) {
     app.get('/Res/getAllResByClass', checkLogin);
     app.get('/Res/getAllResByClass', function(req, res){
         var ctns = req.query.ctns;
+        var phone = req.session.user.phone;
         Res.getAllByC(ctns ,function(err, resList) {
             if (err) {
                 return res.send({
@@ -68,8 +69,13 @@ module.exports = function(app) {
                     'result': {}
                 })
             }
-            console.log(resList);
-            console.log('errCCCC++++++++++++');
+            for(var i=0;i<resList.length;i++){
+                if( resList[i].op == phone ){
+                    resList[i].byMe = true;
+                }else{
+                    resList[i].byMe = false;
+                }
+            }
             return res.send({
                 'resultCode': '000000',
                 'resultMsg': 'success',
@@ -78,7 +84,6 @@ module.exports = function(app) {
         });
     });
     function checkLogin(req, res, next) {
-        console.log('checklogin');
         if (!req.session.user) {
             //用户还未登陆
             res.send({

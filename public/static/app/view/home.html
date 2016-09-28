@@ -8,7 +8,7 @@
 			<li>毕业时间</li>
 		</ul>
 		<ul class="home-g-tbody fn-clear" ng-repeat="obj in classData">
-			<li><a ui-sref="home.class({ctns:obj.ctns})">{{['','html5','android','ios','ui','java'][obj.ctns.split('-')[0]]}}</a></li>
+			<li><a ui-sref="class({ctns:obj.ctns})">{{['','html5','android','ios','ui','java'][obj.ctns.split('-')[0]]}}</a></li>
 			<li>{{obj.ctns.split('-')[1]}}</li>
 			<li>{{obj.count}}</li>
 			<li>{{obj.cst|date:'yyyy-MM-dd'}}</li>
