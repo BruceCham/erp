@@ -7,7 +7,7 @@
 			<li>开班时间</li>
 			<li>毕业时间</li>
 		</ul>
-		<ul class="home-p-tbody fn-clear" ng-repeat="obj in classData">
+		<ul class="home-p-tbody fn-clear" ng-repeat="obj in classData | orderBy:'ctns'">
 			<li><a ui-sref="home.class({ctns:obj.ctns})">{{['','html5','android','ios','ui','java'][obj.ctns.split('-')[0]]}}</a></li>
 			<li>{{obj.ctns.split('-')[1]}}</li>
 			<li>{{obj.count}}</li>

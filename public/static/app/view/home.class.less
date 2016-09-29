@@ -8,7 +8,8 @@
     ul.class-tbody {
         li {
             width: 12.5%;
-            padding: 8px 0;
+            height: 36px;
+            line-height: 36px;
             float: left;
             text-align: center;
             cursor: pointer;
@@ -24,10 +25,12 @@
     .student-group {
         padding: 20px;
         .student-item {
-        	margin-bottom: 15px;
+            padding-bottom: 20px;
+            position: relative;
             legend {
                 line-height: 40px;
                 font-size: 14px;
+                margin-bottom: 5px;
             }
             input {
                 line-height: 36px;
@@ -36,20 +39,27 @@
                 width: 100%;
                 border-radius: 3px;
             }
-            .btn {
-                width: 100%;
-                background: #bbb;
-                -webkit-border-radius: 3px;
-                border-radius: 3px;
-                text-align: center;
-                color: #fff;
-                cursor: pointer;
-                font-weight: 700;
+            .error-msg {
+                color: red;
+                position: absolute;
                 font-size: 14px;
-                line-height: 40px;
-                &.active {
-		            background: #0087E3;
-		        }
+                bottom: -2px;
+            }
+        }
+        .btn {
+            width: 100%;
+            background: #bbb;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 40px;
+            margin-top: 15px;
+            &.active {
+                background: #0087E3;
             }
         }
     }

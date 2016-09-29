@@ -23,6 +23,11 @@ appLogin.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$
         templateUrl: '/static/app/view/home.html',
         controller: 'homeController'
     })
+    .state('home.info',{
+        url: '/info',
+        templateUrl: '/static/app/view/home.info.html',
+        controller: 'homeInfoController'
+    })
     .state('home.list',{
         url: '/list',
         templateUrl: '/static/app/view/home.list.html',
