@@ -1,7 +1,7 @@
 <div class="yg-p-home-class">
 	<h1 class="class-thead">讲台</h1>
 	<ul class="class-tbody fn-clear">
-		<li ng-click="showResDetail(obj,$index)" ng-style="{fontSize:activeCSindex==$index?'18px':''}" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe}">{{obj.cs}}</li>
+		<li ng-click="showResDetail(obj,$index)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe,active:activeCSindex==$index}">{{obj.cs}}</li>
 	</ul>
 	<div class="student-group">
 		<form novalidate name="stuInfo" ng-model="stuInfo" ng-if="activeCSindex!=null && !(op && !byMe)">
