@@ -3,15 +3,15 @@
 	<ul class="class-tbody fn-clear">
 		<li ng-click="showResDetail(obj,$index)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe,active:activeCSindex==$index}">{{obj.cs}}</li>
 	</ul>
-	<div class="student-group">
-		<form novalidate name="stuInfo" ng-model="stuInfo" ng-if="activeCSindex!=null && !(op && !byMe)">
+	<div class="student-group" ng-show="activeCSindex!=null">
+		<form novalidate name="stuInfo" ng-model="stuInfo" ng-if="byMe || op == ''">
 			<div class="student-item">
 				<legend>学员</legend>
-				<input ng-model="sn" name="sn" ng-maxlength="4" ng-minlength="2" type="text" required placeholder="请填写学员名称">
-				<div class="error-msg" ng-show="stuInfo.sn.$dirty">
-					<span ng-show="stuInfo.sn.$error.required">请填写学员名称</span>
-					<span ng-show="stuInfo.sn.$error.maxlength">名称不能超过4个字符</span>
-					<span ng-show="stuInfo.sn.$error.minlength">名称最少2个字符</span>
+				<input ng-model="snInput" name="snInput" ng-maxlength="4" ng-minlength="2" type="text" required placeholder="请填写学员名称">
+				<div class="error-msg" ng-show="stuInfo.snInput.$dirty">
+					<span ng-show="stuInfo.snInput.$error.required">请填写学员名称</span>
+					<span ng-show="stuInfo.snInput.$error.maxlength">名称不能超过4个字符</span>
+					<span ng-show="stuInfo.snInput.$error.minlength">名称最少2个字符</span>
 				</div>
 			</div>
 			<div class="student-item">
@@ -22,10 +22,11 @@
 					<span ng-show="stuInfo.sp.$error.pattern">请输入正确的手机号</span>
 				</div>
 			</div>
-			<div class="btn" ng-class="{active:stuInfo.$valid}">{{byMe?'修&nbsp;&nbsp;改':'占&nbsp;&nbsp;座'}}</div>
+			<input type="hidden" name="ctns" ng-model="ctns" ng-value="ctns">
+			<div class="btn" ng-class="{active:stuInfo.$valid}" ng-click="putRes(stuInfo.$valid)">{{byMe?'修&nbsp;&nbsp;改':'占&nbsp;&nbsp;座'}}</div>
 		</form>
 
-		<form novalidate ng-if="op && !byMe" ng-model="stuInfo">
+		<form novalidate ng-if="op!='' && !byMe" ng-model="stuInfo">
 			<div class="student-item">
 				<legend>学员</legend>
 				<input ng-value="sn" type="text" disabled="">

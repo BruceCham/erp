@@ -7,3 +7,7 @@ module.exports = new Db(
 	new Server(settings.host, settings.port),
  	{safe: true}
 );
+
+// http://www.jianshu.com/p/915c547c7abc#
+
+	

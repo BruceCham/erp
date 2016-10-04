@@ -17,9 +17,15 @@ function Res(res) {
    */
   this.cs = res.cs;
   /**
+   * ctns classTypeNameSeat 1-1601
+   */
+  this.ctn = res.ctn;
+
+  /**
    * ctns classTypeNameSeat 1-1601-A1
    */
-  this.ctns = res.ct + '-' + res.cn + '-' + res.cs;
+  this.ctns = res.ctns;
+
   /**
    * cst [classStartTime 开班时间]
    * 毫秒
@@ -47,10 +53,7 @@ function Res(res) {
 module.exports = Res;
 
 //存储生源信息
-Res.prototype.save = function(callback) {
-  //要存入数据库的用户文档
-  var me = this;
-  var res = new Res(me);
+Res.prototype.saveByCtns = function(obj,callback) {
   //打开数据库
   mongodb.open(function(err, db) {
     if (err) {
@@ -62,19 +65,42 @@ Res.prototype.save = function(callback) {
         mongodb.close();
         return callback(err); //错误，返回 err 信息
       }
-      //将用户数据插入 users 集合
-      collections.insert(res, {
-        safe: true
-      }, function(err, resList) {
+      //update
+      collections.update({ctns: obj.ctns},{
+        sn: obj.sn,
+        sp: obj.sp,
+        op: obj.op
+      },false,true,function(err,res){
         mongodb.close();
-        if (err) {
-          return callback(err); //错误，返回 err 信息
-        }
-        callback(null, resList[0]); //成功！err 为 null，并返回存储后的用户文档
-      });
+          if (err) {
+            return callback(err); //失败！返回 err 信息
+          }
+          return callback(null, res); //成功！返回查询的用户信息
+        });
     });
   });
 };
+
+Res.getResByCtns = function(ctns,callback){
+  mongodb.open(function(err,db){
+    if(err){
+      return callback(err);
+    }
+    db.collection('res',function(err,collections){
+      if(err){
+        mongodb.close();
+        return callback(err);
+      }
+      collections.find({ctns:ctns}).toArray(function(err,res){
+        mongodb.close();
+        if(err){
+          return callback(err);
+        }
+        return callback(null, res);
+      });
+    })
+  });
+}
 
 //读取当前账号的资源信息
 Res.getAllByOp = function(op, callback) {
@@ -97,7 +123,7 @@ Res.getAllByOp = function(op, callback) {
         if (err) {
           return callback(err); //失败！返回 err 信息
         }
-        callback(null, resList); //成功！返回查询的用户信息
+        return callback(null, resList); //成功！返回查询的用户信息
       });
     });
   });
@@ -121,12 +147,12 @@ Res.getAll = function(callback) {
         if (err) {
           return callback(err); //失败！返回 err 信息
         }
-        callback(null, resList); //成功
+        return callback(null, resList); //成功
       });
     });
   });
 };
-Res.getAllByC = function(ctns,callback){
+Res.getAllByC = function(ctn,callback){
   mongodb.open(function(err, db) {
     if (err) {
       return callback(err); //错误，返回 err 信息
@@ -138,14 +164,12 @@ Res.getAllByC = function(ctns,callback){
         return callback(err); //错误，返回 err 信息
       }
       //查找用户手机号（phone键）值为 phone 一个文档
-      collections.find({ctns:ctns}).toArray(function(err, resList) {
+      collections.find({ctn:ctn}).toArray(function(err, resList) {
         mongodb.close();
         if (err) {
           return callback(err); //失败！返回 err 信息
         }
-        console.log(resList);
-        console.log('errModel++++++++++++');
-        callback(null, resList); //成功
+        return callback(null, resList); //成功
       });
     });
   });
@@ -173,7 +197,7 @@ Res.del = function(ct, cn, cs, callback) {
         if (err) {
           return callback(err); //失败！返回 err 信息
         }
-        callback(null, resList); //成功！返回查询的用户信息
+        return callback(null, resList); //成功！返回查询的用户信息
       })
     })
   });
