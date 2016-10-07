@@ -9,3 +9,5 @@ mongodb
 在bin目录下执行
 mongod --dbpath D:\mongodb\data\node
 ```
+
+http://blog.csdn.net/mr_yong/article/details/50350596
