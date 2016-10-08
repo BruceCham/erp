@@ -1,6 +1,7 @@
 var routerModels = {
 	router : require('../controller/router'),
-	user: require('../controller/user'),
+	// user: require('../controller/user'),
+	user2: require('../controller/user2'),
 	res: require('../controller/res')
 };
 module.exports = function (app){
