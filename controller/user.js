@@ -1,6 +1,5 @@
-//用户登陆、注册、退出
 var crypto = require('crypto'),
-    User = require('../models/user');
+    UserEntity = require('../models/User').UserEntity;
 
 module.exports = function(app) {
     /**
@@ -31,38 +30,39 @@ module.exports = function(app) {
         }
         var md5 = crypto.createHash('md5'),
             password = md5.update(req.body.password).digest('hex');
-        var newUser = new User({
-            name: name || phone,
-            password: password,
-            phone: phone
-        });
-        User.get(newUser.phone, function(err, user) {
+        UserEntity.findOne({ phone: phone }, '_id', function(err, user) {
             if (err) {
-                req.flash('error', err);
-                return res.redirect('/');
+                return res.send({
+                    resultCode: '000001',
+                    resultMsg: '服务器异常',
+                    result: null
+                })
             }
             if (user) {
                 return res.send({
-                    'resultCode': '000005',
-                    'resultMsg': '用户已存在',
-                    'result': {}
+                    resultCode: '000002',
+                    resultMsg: '用户已存在',
+                    result: null
                 })
             }
-            newUser.save(function(err, user) {
-                if (err) {
+            var registerUser = new UserEntity({
+                name: name || phone,
+                phone: phone,
+                password: password
+            });
+            registerUser.save(function(err, row) {
+                if (err) { //服务器保存异常  
                     return res.send({
-                        'resultCode': '000044',
-                        'resultMsg': '数据库操作失败',
-                        'result': {}
+                        resultCode: '000001',
+                        resultMsg: '服务器异常',
+                        result: null
                     })
                 }
-                return res.send({
-                    'resultCode': '000000',
-                    'resultMsg': 'success',
-                    'result': {
-                        username: newUser.name
-                    }
-                })
+                res.send({
+                    resultCode: '000000',
+                    result: {},
+                    resultMsg: '注册成功'
+                });
             });
         });
     });
@@ -72,33 +72,34 @@ module.exports = function(app) {
      */
     app.post('/User/login', checkNotLogin);
     app.post('/User/login', function(req, res) {
+    	console.log('+++++++++++++++++++++++++++++++++++++++')
         var md5 = crypto.createHash('md5'),
+            phone = req.body.phone,
             password = md5.update(req.body.password).digest('hex');
-        User.get(req.body.phone, function(err, user) {
-            if (!user) {
-                res.send({
-                    "resultCode": "000001",
-                    "result": {},
-                    "resultMsg": "用户不存在"
-                });
-                return;
+        UserEntity.findOne({ phone: phone, password: password }, { password: 0 }, function(err, user) {
+            if (err) {
+                return res.send({
+                    resultCode: '000001',
+                    resultMsg: '服务器异常',
+                    result: null
+                })
             }
-            if (user.password != password) {
-                res.send({
-                    "resultCode": "000002",
-                    "result": {},
-                    "resultMsg": "账号或密码不正确"
-                });
-                return;
+            if (!user) {
+                return res.send({
+                    resultCode: '000003',
+                    resultMsg: '用户名或密码错误',
+                    result: null
+                })
             }
             req.session.user = user;
             res.send({
-                "resultCode": "000000",
+            	"resultCode": "000000",
                 "result": {
                     username: user.name
                 },
                 "resultMsg": "登陆成功"
             });
+            UserEntity.update({_id:user._id},{$set: {lastLoginTime: new Date()}}).exec(); 
         });
     });
 
