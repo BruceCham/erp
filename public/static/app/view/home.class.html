@@ -26,18 +26,18 @@
 			<div class="btn" ng-class="{active:stuInfo.$valid}" ng-click="putRes(stuInfo.$valid)">{{byMe?'修&nbsp;&nbsp;改':'占&nbsp;&nbsp;座'}}</div>
 		</form>
 
-		<form novalidate ng-if="op!='' && !byMe" ng-model="stuInfo">
+		<form novalidate ng-if="op!='' && !byMe">
 			<div class="student-item">
 				<legend>学员</legend>
-				<input ng-value="sn" type="text" disabled="">
+				<input ng-value="sn" type="text" disabled>
 			</div>
 			<div class="student-item">
 				<legend>学员手机号</legend>
-				<input ng-value="sp" placeholder="请输入学员手机号码" type="text" disabled="">
+				<input ng-value="sp" placeholder="请输入学员手机号码" type="text" disabled>
 			</div>
 			<div class="student-item">
 				<legend>咨询师手机号</legend>
-				<input ng-value="op" disabled="true" type="text">
+				<input ng-value="op" disabled type="text">
 			</div>
 		</form>
 	</div>
