@@ -1,9 +1,9 @@
-var Res = require('../models/res');
+var ResEntity = require('../models/Res').ResEntity;
 module.exports = function(app) {
     app.get('/Res/getAllRes', checkLogin);
     app.get('/Res/getAllRes', function(req, res) {
-        Res.getAll(function(err, resList) {
-            if (err) {
+        ResEntity.find({},function(err, docs){
+            if(err){
                 return res.send({
                     'resultCode': '000044',
                     'resultMsg': '数据库操作失败',
@@ -12,8 +12,8 @@ module.exports = function(app) {
             }
             var ctn = [];
             var result = [];
-            for(var i=0;i<resList.length;i++){
-                var obj = resList[i];
+            for(var i=0;i<docs.length;i++){
+                var obj = docs[i];
                 var str = obj.ctn;
                 if( ctn.join(',').indexOf(str) > -1){
                     for(var j=0;j<result.length;j++){
@@ -43,7 +43,7 @@ module.exports = function(app) {
     app.get('/Res/getAllResByClass', function(req, res){
         var ctn = req.query.ctn;
         var phone = req.session.user.phone;
-        Res.getAllByC(ctn ,function(err, resList) {
+        ResEntity.find({ctn: ctn},function(err,docs){
             if (err) {
                 return res.send({
                     'resultCode': '000044',
@@ -51,17 +51,17 @@ module.exports = function(app) {
                     'result': {}
                 })
             }
-            for(var i=0;i<resList.length;i++){
-                if( resList[i].op == phone ){
-                    resList[i].byMe = true;
+            for(var i=0;i<docs.length;i++){
+                if( docs[i].op == phone ){
+                    docs[i].byMe = true;
                 }else{
-                    resList[i].byMe = false;
+                    docs[i].byMe = false;
                 }
             }
             return res.send({
                 'resultCode': '000000',
                 'resultMsg': 'success',
-                'result': resList
+                'result': docs
             })
         });
     });
@@ -72,27 +72,29 @@ module.exports = function(app) {
         var sn = req.body.sn;
         var sp = req.body.sp;
         var ctns = req.body.ctns;
-        Res.getResByCtns(ctns, function(err, res){
-            if(err){
+        // update({ _id: id }, { $set: { size: 'large' }}, callback);
+        ResEntity.findOne({ctns:ctns},function(err,doc){
+            if (err) {
                 return res.send({
                     'resultCode': '000044',
                     'resultMsg': '数据库操作失败',
                     'result': {}
                 })
             }
-            if( res.op !='' && res.op != op ){
+            if( doc.op !='' && doc.op != op ){
                 return res.send({
                     "resultCode":'000021',
                     "result": {},
                     "resultMsg": "当前账号没有操作此数据权限"
                 });
             }
-            Res.saveByCtns({
+            var modifyRes = new ResEntity({
                 op: op,
                 sn: sn,
                 sp: sp,
-                ctns: ctns
-            },function(err, res){
+                lastModifyTime: Date.now()
+            });
+            modifyRes.save(function(err,docs){
                 if(err){
                     return res.send({
                         'resultCode': '000044',
@@ -106,12 +108,10 @@ module.exports = function(app) {
                     "resultMsg": ""
                 });
             });
-
         });
     });
     function checkLogin(req, res, next) {
         if (!req.session.user) {
-            //用户还未登陆
             res.send({
                 "resultCode": "000000",
                 "result": {
