@@ -1,27 +1,23 @@
 appLogin.controller('homeClassController',['$scope','$http','$stateParams',function($scope,$http,$stateParams){
 	$scope.dataArr = [];
-	// $scope.activeCSindex = 0;//null 不显示，非null 显示
-	$scope.showResDetail = function(o,i){
-		// if( $scope.activeCSindex != null && $scope.activeCSindex != i) return;
-		// $scope.activeCSindex = $scope.activeCSindex == i?null:i;
-		$scope.activeCSindex = i;
+	$scope.activeCSindex = null;//null 不显示，非null 显示
+	$scope.showResDetail = function(o){
+		$scope.activeCSindex = o.cs;
 		$scope.sn = o.sn || o.cs;
 		$scope.sp = o.sp;
 		$scope.op = o.op;
 		$scope.ctns = o.ctns;
 		$scope.byMe = o.byMe;
+		$scope.isDisable = o.op && !o.byMe;
 	}
 	$scope.putRes = function(flag){
-		console.log($scope.snInput);
-		console.log($scope.sp);
-		return;
 		if( flag ){
 			$http({
-				url: 'Res/updateResByCtns',
+				url: '/Res/updateResByCtns',
 				method: 'post',
 				data: {
-					sn: $scope.snInput,
-					sp: $scope.spInput,
+					sn: $scope.sn,
+					sp: $scope.sp,
 					ctns: $scope.ctns
 				}
 			}).success(function(res){
@@ -38,6 +34,14 @@ appLogin.controller('homeClassController',['$scope','$http','$stateParams',funct
 	}).success(function(res){
 		if(res.resultCode == '000000'){
 			$scope.dataArr = res.result;
+			var o = $scope.dataArr[0];
+			$scope.activeCSindex = o.cs;
+			$scope.sn = o.sn || o.cs;
+			$scope.sp = o.sp;
+			$scope.op = o.op;
+			$scope.ctns = o.ctns;
+			$scope.byMe = o.byMe;
+			$scope.isDisable = o.op && !o.byMe;
 		}
 	});
 }]);

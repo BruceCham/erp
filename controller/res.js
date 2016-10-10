@@ -2,7 +2,7 @@ var ResEntity = require('../models/Res').ResEntity;
 module.exports = function(app) {
     app.get('/Res/getAllRes', checkLogin);
     app.get('/Res/getAllRes', function(req, res) {
-        ResEntity.find({},function(err, docs){
+        ResEntity.find().sort({'cs':'asc'}).exec(function(err,docs){
             if(err){
                 return res.send({
                     'resultCode': '000044',
@@ -51,23 +51,26 @@ module.exports = function(app) {
                     'result': {}
                 })
             }
+            var result = [];
             for(var i=0;i<docs.length;i++){
-                if( docs[i].op == phone ){
-                    docs[i].byMe = true;
+                var _doc = docs[i].toObject();
+                if( _doc.op == phone ){
+                    _doc.byMe = true;
                 }else{
-                    docs[i].byMe = false;
+                    _doc.byMe = false;
                 }
+                result.push( _doc );
             }
             return res.send({
                 'resultCode': '000000',
                 'resultMsg': 'success',
-                'result': docs
+                'result': result
             })
         });
     });
 
-    app.post('Res/updateResByCtns',checkLogin);
-    app.post('Res/updateResByCtns',function(req,res){
+    app.post('/Res/updateResByCtns',checkLogin);
+    app.post('/Res/updateResByCtns',function(req,res){
         var op = req.session.user.phone;
         var sn = req.body.sn;
         var sp = req.body.sp;

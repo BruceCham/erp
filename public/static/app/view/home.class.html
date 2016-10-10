@@ -1,44 +1,33 @@
 <div class="yg-p-home-class">
 	<h1 class="class-thead">讲台</h1>
 	<ul class="class-tbody fn-clear">
-		<li ng-click="showResDetail(obj,$index)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe,active:activeCSindex==$index}">{{obj.cs}}</li>
+		<li ng-click="showResDetail(obj)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe,active:activeCSindex==obj.cs}">{{obj.cs}}</li>
 	</ul>
-	<div class="student-group" ng-show="activeCSindex!=null">
-		<form novalidate name="stuInfo" ng-model="stuInfo" ng-if="byMe || op == ''">
+	<div class="student-group">
+		<form novalidate name="stuInfo" ng-model="stuInfo">
 			<div class="student-item">
 				<legend>学员</legend>
-				<input ng-model="snInput" name="snInput" ng-maxlength="4" ng-minlength="2" type="text" required placeholder="请填写学员名称">
-				<div class="error-msg" ng-show="stuInfo.snInput.$dirty">
-					<span ng-show="stuInfo.snInput.$error.required">请填写学员名称</span>
-					<span ng-show="stuInfo.snInput.$error.maxlength">名称不能超过4个字符</span>
-					<span ng-show="stuInfo.snInput.$error.minlength">名称最少2个字符</span>
+				<input ng-disabled="isDisable" ng-model="sn" name="sn" ng-maxlength="4" ng-minlength="2" type="text" required placeholder="请填写学员名称">
+				<div class="error-msg" ng-show="stuInfo.sn.$dirty">
+					<span ng-show="stuInfo.sn.$error.required">请填写学员名称</span>
+					<span ng-show="stuInfo.sn.$error.maxlength">名称不能超过4个字符</span>
+					<span ng-show="stuInfo.sn.$error.minlength">名称最少2个字符</span>
 				</div>
 			</div>
 			<div class="student-item">
 				<legend>学员手机号</legend>
-				<input ng-model="sp" name="sp" ng-pattern='/^(1[^012][0-9]{9})$/' required="" placeholder="请输入学员手机号码" type="text" >
+				<input ng-disabled="isDisable" ng-model="sp" name="sp" ng-pattern='/^(1[^012][0-9]{9})$/' required="" placeholder="请输入学员手机号码" type="text" >
 				<div class="error-msg" ng-show="stuInfo.sp.$dirty">
 					<span ng-show="stuInfo.sp.$error.required">请填写学员手机号</span>
 					<span ng-show="stuInfo.sp.$error.pattern">请输入正确的手机号</span>
 				</div>
 			</div>
+			<div class="student-item" ng-hide="!isDisable">
+				<legend>导师</legend>
+				<input disabled ng-model="op" name="op" type="text" >
+			</div>
 			<input type="hidden" name="ctns" ng-model="ctns" ng-value="ctns">
-			<div class="btn" ng-class="{active:stuInfo.$valid}" ng-click="putRes(stuInfo.$valid)">{{byMe?'修&nbsp;&nbsp;改':'占&nbsp;&nbsp;座'}}</div>
-		</form>
-
-		<form novalidate ng-if="op!='' && !byMe">
-			<div class="student-item">
-				<legend>学员</legend>
-				<input ng-value="sn" type="text" disabled>
-			</div>
-			<div class="student-item">
-				<legend>学员手机号</legend>
-				<input ng-value="sp" placeholder="请输入学员手机号码" type="text" disabled>
-			</div>
-			<div class="student-item">
-				<legend>咨询师手机号</legend>
-				<input ng-value="op" disabled type="text">
-			</div>
+			<div ng-hide="isDisable" class="btn" ng-class="{active:stuInfo.$valid}" ng-click="putRes(stuInfo.$valid)">{{byMe?'修&nbsp;&nbsp;改':'占&nbsp;&nbsp;座'}}</div>
 		</form>
 	</div>
 </div>
