@@ -21,7 +21,12 @@ appLogin.controller('homeClassController',['$scope','$http','$stateParams',funct
 					ctns: $scope.ctns
 				}
 			}).success(function(res){
-				console.log(res)
+				if( res.resultCode == '000000' ){
+					alert('操作成功');
+					location.reload();
+				}else{
+					alert( res.resultMsg );
+				}
 			})
 		}
 	}

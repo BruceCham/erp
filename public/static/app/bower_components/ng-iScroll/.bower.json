@@ -1,0 +1,14 @@
+{
+  "name": "ng-iScroll",
+  "homepage": "https://github.com/ibspoof/ng-iScroll",
+  "_release": "170fb6f81e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "170fb6f81e1bcf910f16fae17fc331ccaa20ae14"
+  },
+  "_source": "https://github.com/ibspoof/ng-iScroll.git",
+  "_target": "*",
+  "_originalSource": "ng-iScroll",
+  "_direct": true
+}
