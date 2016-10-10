@@ -91,13 +91,12 @@ module.exports = function(app) {
                     "resultMsg": "当前账号没有操作此数据权限"
                 });
             }
-            var modifyRes = new ResEntity({
+            ResEntity.update({_id: doc._id},{$set:{
                 op: op,
                 sn: sn,
                 sp: sp,
                 lastModifyTime: Date.now()
-            });
-            modifyRes.save(function(err,docs){
+            }},function(err,docs){
                 if(err){
                     return res.send({
                         'resultCode': '000044',
