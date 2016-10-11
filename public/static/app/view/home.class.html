@@ -1,5 +1,9 @@
 <div class="yg-p-home-class">
-	<h1 class="class-thead">讲台</h1>
+	<h1 class="class-thead">
+		<span>讲台</span>
+		<span class="posLeft">{{['','html5','android','ios','ui','java'][className.split('-')[0]]}}-{{className.split('-')[1]}}</span>
+		<span class="posRight">主讲老师：{{['','李京华','刘景泽','李京华','朱辰阳','闫振伟'][className.split('-')[0]]}}</span>
+	</h1>
 	<ul class="class-tbody fn-clear">
 		<li ng-click="showResDetail(obj)" ng-repeat="obj in dataArr | orderBy: 'cs'" ng-class="{activeByMe:obj.op && obj.byMe,activeByOther:obj.op && !obj.byMe,active:activeCSindex==obj.cs}">{{obj.cs}}</li>
 	</ul>

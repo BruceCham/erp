@@ -3,7 +3,20 @@
         font-size: 18px;
         text-align: center;
         padding: 10px 0;
+        position: relative;
         border-bottom: 2px solid #1e78c5;
+        .posLeft {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 14px;
+        }
+        .posRight {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 14px;
+        }
     }
     ul.class-tbody {
         li {
@@ -20,8 +33,8 @@
             &.activeByOther {
                 color: blue;
             }
-            &.active{
-            	font-size: 20px;
+            &.active {
+                font-size: 20px;
             }
         }
     }

@@ -1,4 +1,5 @@
 appLogin.controller('homeClassController',['$scope','$http','$stateParams',function($scope,$http,$stateParams){
+	$scope.className = $stateParams.ctn;
 	$scope.dataArr = [];
 	$scope.activeCSindex = null;//null 不显示，非null 显示
 	$scope.showResDetail = function(o){
