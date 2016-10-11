@@ -18,5 +18,6 @@
 			<span>两次输入的密码不一致</span>
 		</div>
 		<div class="loginBtn" ng-click="reg(myForm.$valid&&password===passwordRepeat)" ng-class="{active:myForm.$valid&&password===passwordRepeat}">注&nbsp;&nbsp;册</div>
+		<p class="loginToReg">已有账号？<a ui-sref="login">请登录</a></p>
 	</form>
 </div>

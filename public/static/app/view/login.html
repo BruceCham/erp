@@ -10,5 +10,6 @@
 			<span ng-show="myForm.password.$error.required">请输入密码</span>
 		</div>
 		<div class="loginBtn" ng-click="login(myForm.$valid)" ng-class="{active: myForm.$valid}">登&nbsp;&nbsp;录</div>
+		<p class="loginToReg">还没有账号？<a ui-sref="reg">注册</a></p>
 	</form>
 </div>
