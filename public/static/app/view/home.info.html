@@ -14,10 +14,10 @@
         <li>科目</li>
         <li>班级</li>
     </ul>
-    <ul class="list-p-tbody fn-clear" ng-repeat="obj in dataArrs | orderBy:'ctn'">
+    <ul class="list-p-tbody fn-clear" ng-repeat="obj in dataArrs | orderBy:'ct':'cn'">
     	<li>{{obj.sn}}</li>
     	<li>{{obj.sp}}</li>
-        <li>{{['','html5','android','ios','ui','java'][obj.ctn.split('-')[0]]}}</li>
-        <li>{{obj.ctn.split('-')[1]}}</li>
+        <li>{{['','html5','android','ios','ui','java'][obj.ct]}}</li>
+        <li>{{obj.cn}}</li>
     </ul>
 </div>
