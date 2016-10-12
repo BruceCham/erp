@@ -1,13 +1,25 @@
-input:-webkit-autofill {background-color: #FAFFBD;background-image: none;color: #000;}
-input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;}
-*{
-	padding: 0;
-	margin: 0;
+input:-webkit-autofill {
+    background-color: #FAFFBD;
+    background-image: none;
+    color: #000;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+* {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-html,body{
-	font-family: '微软雅黑'
-}html {
+
+html,
+body {
+    font-family: '微软雅黑'
+}
+
+html {
     color: #000;
     background: #fff;
     -webkit-text-size-adjust: 100%;
@@ -19,17 +31,47 @@ body {
     overflow-x: hidden;
 }
 
-body,h1,h2,h3,h4,h5,h6,p,hr,pre,blockquote,dl,dt,dd,ul,ol,li,figure,fieldset,button,input,textarea,th,td {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+hr,
+pre,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+figure,
+fieldset,
+button,
+input,
+textarea,
+th,
+td {
     margin: 0;
     padding: 0
 }
 
-body,button,input,select,textarea {
+body,
+button,
+input,
+select,
+textarea {
     font-size: 14px;
-    font-family: Tahoma,Arial,"Microsoft YaHei",SimSun,sans-serif
+    font-family: Tahoma, Arial, "Microsoft YaHei", SimSun, sans-serif
 }
 
-button,input,select,textarea {
+button,
+input,
+select,
+textarea {
     font-size: 100%
 }
 
@@ -37,24 +79,39 @@ select {
     border-color: #ccc
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 100%;
     font-weight: 400
 }
 
-address,cite,dfn,em,var,i {
+address,
+cite,
+dfn,
+em,
+var,
+i {
     font-style: normal
 }
 
-strong,b {
+strong,
+b {
     font-weight: 400
 }
 
-code,kbd,samp,tt {
-    font-family: "Courier New",Courier,monospace
+code,
+kbd,
+samp,
+tt {
+    font-family: "Courier New", Courier, monospace
 }
 
-ul,ol {
+ul,
+ol {
     list-style: none
 }
 
@@ -85,11 +142,13 @@ table {
     border-spacing: 0
 }
 
-caption,th {
+caption,
+th {
     text-align: left
 }
 
-abbr,acronym {
+abbr,
+acronym {
     border: 0;
     font-variant: normal
 }
@@ -98,7 +157,8 @@ del {
     text-decoration: line-through
 }
 
-sub,sup {
+sub,
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -117,7 +177,17 @@ iframe {
     display: block
 }
 
-article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section {
+article,
+aside,
+dialog,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
     display: block
 }
 
@@ -126,51 +196,58 @@ mark {
     color: #000
 }
 
-audio,canvas,video {
+audio,
+canvas,
+video {
     display: inline-block;
     *display: inline;
-    *zoom:1}
-header{
+    *zoom: 1
+}
+
+header {
     position: absolute;
     width: 100%;
     height: 40px;
     line-height: 40px;
     background: #0087E3;
-    background: -webkit-gradient(linear,0 0,0 100%,from(#0087E3),to(#575b8a));
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0087E3), to(#575b8a));
     color: #fff;
     top: 0;
     left: 0;
     z-index: 2;
     text-align: center;
     font-size: 16px;
-    .userinfo{
+    .userinfo {
         position: absolute;
         right: 0;
         top: 0;
-        .goback{
+        .goback {
             margin-left: 5px;
             cursor: pointer;
-            &:hover{
+            &:hover {
                 text-decoration: underline;
             }
         }
     }
 }
-footer{
+
+footer {
     position: absolute;
     width: 100%;
     height: 40px;
     line-height: 40px;
     background: #0087E3;
-    background: -webkit-gradient(linear,0 0,0 100%,from(#0087E3),to(#575b8a));
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0087E3), to(#575b8a));
     color: #fff;
     bottom: 0;
     left: 0;
-    z-index: 2; 
+    z-index: 2;
     text-align: center;
     font-size: 16px;
 }
-.body{
+
+.body {
+    background: #f1f6fb;
     position: absolute;
     top: 40px;
     bottom: 40px;
@@ -178,6 +255,7 @@ footer{
     z-index: 1;
     overflow: auto;
 }
+
 .fn-clear:after {
     visibility: hidden;
     display: block;
@@ -188,4 +266,5 @@ footer{
 }
 
 .fn-clear {
-zoom:1}
+    zoom: 1
+}

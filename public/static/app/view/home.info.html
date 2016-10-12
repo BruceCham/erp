@@ -1,1 +1,23 @@
-个人中心设计开发中……
+<div class="yg-p-home-info">
+	<div class="info-datas fn-clear">
+		<div class="datas-canvas"></div>
+		<div class="datas-box">
+			<p>html5:10</p>
+			<p>android:10</p>
+			<p>大数据:10</p>
+			<p>ui: 10</p>
+		</div>
+	</div>
+    <ul class="list-p-thead fn-clear">
+    	<li>姓名</li>
+    	<li>电话</li>
+        <li>科目</li>
+        <li>班级</li>
+    </ul>
+    <ul class="list-p-tbody fn-clear" ng-repeat="obj in dataArrs | orderBy:'ctn'">
+    	<li>{{obj.sn}}</li>
+    	<li>{{obj.sp}}</li>
+        <li>{{['','html5','android','ios','ui','java'][obj.ctn.split('-')[0]]}}</li>
+        <li>{{obj.ctn.split('-')[1]}}</li>
+    </ul>
+</div>
