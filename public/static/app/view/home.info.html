@@ -1,11 +1,7 @@
 <div class="yg-p-home-info">
-	<div class="info-datas fn-clear">
-		<div class="datas-canvas"></div>
+	<div class="info-datas">
 		<div class="datas-box">
-			<p>html5:10</p>
-			<p>android:10</p>
-			<p>大数据:10</p>
-			<p>ui: 10</p>
+            <span ng-repeat="(key,val) in count" class="info-count">{{key}}:{{val}}</span>
 		</div>
 	</div>
     <ul class="list-p-thead fn-clear">

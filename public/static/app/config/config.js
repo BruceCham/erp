@@ -15,11 +15,15 @@ appUnlogin.config(["$stateProvider", "$urlRouterProvider", function($stateProvid
 }]);
 var appLogin = angular.module('login_h5', ['ui.router', 'ng-iscroll']);
 appLogin.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home/index');
     $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: '/static/app/view/home.html',
+            templateUrl: '/static/app/view/home.html'
+        })
+        .state('home.index', {
+            url: '/index',
+            templateUrl: '/static/app/view/home.index.html',
             controller: 'homeController'
         })
         .state('home.info', {

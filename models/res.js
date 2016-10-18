@@ -2,6 +2,7 @@ var base = require('./Base');
 var ObjectId = base.ObjectId;
 var ResScheme = new base.Schema({
     lastModifyTime: Date, //最后修改时间
+    //['','html5','android','ios','ui','java']
     ct: String,
     cn: String,
     cs: String,

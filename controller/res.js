@@ -112,6 +112,43 @@ module.exports = function(app) {
             });
         });
     });
+
+    app.get('/Res/getResByMe',checkLogin);
+    app.get('/Res/getResByMe',function(req, res){
+        var phone = req.session.user.phone;
+        ResEntity.find({op: phone},function(err,docs){
+            if (err) {
+                return res.send({
+                    'resultCode': '000044',
+                    'resultMsg': '数据库操作失败',
+                    'result': {}
+                })
+            }
+            var result = [];
+            var _Type = ['','html5','android','ios','ui','java'];
+            var infoCount = {
+                'html5': 0,
+                'android': 0,
+                'ios': 0,
+                'ui': 0,
+                'java': 0
+            };
+            for(var i=0;i<docs.length;i++){
+                var _doc = docs[i].toObject();
+                var _type = _Type[ _doc.ct ];
+                infoCount[ _type ]++;
+                result.push( _doc );
+            }
+            return res.send({
+                'resultCode': '000000',
+                'resultMsg': 'success',
+                'result': {
+                    list: result,
+                    count: infoCount
+                }
+            })
+        });
+    });
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             res.send({
