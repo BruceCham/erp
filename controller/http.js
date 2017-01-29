@@ -1,4 +1,8 @@
 var mongodb = require('../models/db');
+var fetch = require('node-fetch');
+fetch('http://localhost:3000/account/getHotImages',{ method: 'post', body: 'a=1' })
+    .then(res => res.json())
+    .then(json => console.log(json));
 var testDatas = {
 	'9527': {
 		name: '周星驰',
